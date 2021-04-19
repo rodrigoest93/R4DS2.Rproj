@@ -26,14 +26,21 @@ casas %>%
   filter_at(
     vars(porao_qualidade, varanda_fechada_area, cerca_qualidade),
     ~!is.na(.x)
-  )
+  ) %>% view()
 
 
 # modo 2
 casas %>%
+  filter(across(
+    c(porao_qualidade, varanda_fechada_area, cerca_qualidade),
+    ~!is.na(.x)
+  ))
 
+# c) modo 1
+casas %>%
+  mutate_if(is.character, ~tidyr::replace_na(.x, replace = "Não possui"))
 
-
+# modo 2
 
 
 
