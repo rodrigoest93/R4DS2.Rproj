@@ -42,6 +42,12 @@ casas %>%
 
 # modo 2
 
-
+casas %>%
+  mutate(
+    across(
+      .cols = where(is.character),
+      .fns = tidyr::replace_na,
+      replace = "Não possui"
+    ))
 
 
